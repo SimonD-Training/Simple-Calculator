@@ -15,15 +15,12 @@
                 margin: 0;
             }
             td > input {
-                width: 10vw;
-                height: 4vw;
-                font-size: 2vw;
+                width: 12vw;
+                height: 3.5vw;
+                font-size: 1.5vw;
             }
-            #problem {
-                width: 30vw;
-            }
-            #solution {
-                width: 40vw;
+            #view {
+                width: 36vw;
             }
             .hidden {
                 display: none;
@@ -41,13 +38,13 @@
         </select> <br>
         <table id="scalc">
             <tr>
-                <td colspan="3"><input type="text" id="problem" /></td>
+                <td colspan="3"><input type="text" id="view" /></td>
                 <!-- clr() function will call clr to clear all value -->
-                <td><input type="button" value="CE" onclick="clr()" /></td>
+                <td><input type="button" value="AC" onclick="clr()" /></td>
             </tr>
             <tr>
                 <!-- create button and assign value to each button -->
-                <!-- dis("1") will call function dis to display value -->
+                <!-- dis(string) will call function dis to display value -->
                 <td><input type="button" value="1" onclick="dis('1')" /></td>
                 <td><input type="button" value="2" onclick="dis('2')" /></td>
                 <td><input type="button" value="3" onclick="dis('3')" /></td>
@@ -69,7 +66,7 @@
                 <td><input type="button" value="." onclick="dis('.')" /></td>
                 <td><input type="button" value="0" onclick="dis('0')" /></td>
                 <!-- solve function call function solve to evaluate value -->
-                <td><input type="button" value="=" onclick="solve()" /></td>
+                <td><input type="button" value="CALCULATE" onclick="execute()" /></td>
                 <td><input type="button" value="*" onclick="dis('*')" /></td>
             </tr>
             <tr>
@@ -78,29 +75,26 @@
                 <td><input type="button" value="^" onclick="dis('^')" /></td>
                 <td><input type="button" value="c" onclick="popit()" /></td>
             </tr>
-            <tr>
-                <td colspan="4"><input type="text" readonly id="solution" /></td>
-            </tr>
         </table>
         <div id="areaC" class="hidden">
             <h4>Area from Circumference</h4>
             <label>Circumference</label>
             <input type="text" id="circumference">
-            <button onclick="areafromcirc()">Calculate</button>
+            <button onclick="execute()">Calculate</button>
             <input type="text" readonly id="circumferenceA">
         </div>
         <div id="areaR" class="hidden">
             <h4>Area from Radius</h4>
             <label>Radius</label>
             <input type="text" id="radius">
-            <button onclick="areafromrad()">Calculate</button>
+            <button onclick="execute()">Calculate</button>
             <input type="text" readonly id="radiusA">
         </div>
         <div id="areaD" class="hidden">
             <h4>Area from Diameter</h4>
             <label>Diameter</label>
             <input type="text" id="diameter">
-            <button onclick="areafromdia()">Calculate</button>
+            <button onclick="execute()">Calculate</button>
             <input type="text" readonly id="diameterA">
         </div>
         <div id="areaSQ" class="hidden" style="text-align: center;">
@@ -109,7 +103,7 @@
             <input type="text" id="rectside">
             <label>Side B</label>
             <input type="text" id="rectside2">
-            <button onclick="areafromside()">Submit</button>
+            <button onclick="execute()">Submit</button>
             <input type="text" readonly id="rectsideA">
         </div>
     </body>

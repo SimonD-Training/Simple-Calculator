@@ -1,6 +1,5 @@
 //OPERATIONS
-var problem = document.getElementById("problem");
-var solution = document.getElementById("solution");
+var view = document.getElementById("view");
 var circumference = document.getElementById("circumference");
 var circumferenceA = document.getElementById("circumferenceA");
 var radius = document.getElementById("radius");
@@ -11,7 +10,7 @@ var rectside = document.getElementById("rectside");
 var rectside2 = document.getElementById("rectside2");
 var rectsideA = document.getElementById("rectsideA");
 const resultList = [];
-const categories = ['scalc', 'areaC', 'areaR', 'areaD', 'areaSQ'];
+const categories = ["scalc", "areaC", "areaR", "areaD", "areaSQ"];
 function runpow(expression) {
     let expr2 = [];
     if (!expression.includes("^")) {
@@ -231,21 +230,31 @@ function calculate(expression) {
     return expression;
 }
 function display(result) {
-    solution.value = result;
+    expr = String(result[0]);
+    if (/e-[\d]+/g.test(expr)) {
+        placement = /e-[\d]+/g.exec(expr);
+        num = placement[0].slice(2, placement[0].length);
+        expr = expr.replace(/e-[\d]+/g, "/10^" + num);
+    } else if (/e+[\d]+/g.test(expr)) {
+        placement = /e+[\d]+/g.exec(expr);
+        num = placement[0].slice(2, placement[0].length);
+        expr = expr.replace(/e+[\d]+/g, "*10^" + num);
+    }
+    view.value = expr;
 }
 
 //HTML
 function clr() {
-    problem.value = null;
+    view.value = null;
 }
 function dis(char) {
-    problem.value += char;
+    view.value += char;
 }
 function popit() {
-    problem.value = problem.value.slice(0, problem.value.length - 1);
+    view.value = view.value.slice(0, -1);
 }
 function solve() {
-    let expression = problem.value;
+    let expression = view.value;
     try {
         display(calculate(expression));
         resultList.push(expression);
@@ -253,17 +262,36 @@ function solve() {
         display(String(err));
     }
 }
-
+var _active;
 function active(id) {
+    _active = id;
     categories.forEach((id) => {
-        document.querySelector('#'+id).classList.add('hidden');
+        document.querySelector("#" + id).classList.add("hidden");
     });
-    document.querySelector('#'+id).classList.remove('hidden');
+    document.querySelector("#" + id).classList.remove("hidden");
 }
-
+function execute() {
+    switch (_active) {
+        case "scalc":
+            solve();
+            break;
+        case "areaC":
+            areafromcirc();
+            break;
+        case "areaR":
+            areafromrad();
+            break;
+        case "areaD":
+            areafromdia();
+            break;
+        case "areaSQ":
+            areafromside();
+            break;
+    }
+}
 function areafromcirc() {
     circum = parseFloat(circumference.value);
-    r = circum/Math.PI/2;
+    r = circum / Math.PI / 2;
     circumferenceA.value = Math.PI * Math.pow(r, 2);
 }
 function areafromrad() {
@@ -272,11 +300,11 @@ function areafromrad() {
 }
 function areafromdia() {
     dia = parseFloat(diameter.value);
-    r = dia/2;
+    r = dia / 2;
     diameterA.value = Math.PI * Math.pow(r, 2);
 }
 function areafromside() {
     a = parseFloat(rectside.value);
     b = parseFloat(rectside2.value);
-    rectsideA.value = a*b;
+    rectsideA.value = a * b;
 }
