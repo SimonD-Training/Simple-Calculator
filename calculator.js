@@ -244,15 +244,15 @@ function display(result) {
 }
 
 //HTML
-function clr() {
-    view.value = null;
-}
-function dis(char) {
-    view.value += char;
-}
-function popit() {
-    view.value = view.value.slice(0, -1);
-}
+// function clr() {
+//     view.value = null;
+// }
+// function dis(char) {
+//     view.value += char;
+// }
+// function popit() {
+//     view.value = view.value.slice(0, -1);
+// }
 function solve() {
     let expression = view.value;
     try {
@@ -262,7 +262,7 @@ function solve() {
         display(String(err));
     }
 }
-var _active;
+var _active = "scalc";
 function active(id) {
     _active = id;
     categories.forEach((id) => {

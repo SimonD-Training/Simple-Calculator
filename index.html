@@ -14,14 +14,6 @@
                 justify-content: center;
                 margin: 0;
             }
-            td > input {
-                width: 12vw;
-                height: 3.5vw;
-                font-size: 1.5vw;
-            }
-            #view {
-                width: 36vw;
-            }
             .hidden {
                 display: none;
             }
@@ -30,52 +22,18 @@
     <body>
         <h2>Calculator</h2>
         <select id="Category" onchange="active(this.value)">
-            <option value="scalc">Simple Calc</option>
+            <option value="scalc">Simple Calculator</option>
             <option value="areaC">Area Given Circumference</option>
             <option value="areaR">Area Given Radius</option>
             <option value="areaD">Area Given Diameter</option>
             <option value="areaSQ">Area Given Side</option>
         </select> <br>
-        <table id="scalc">
-            <tr>
-                <td colspan="3"><input type="text" id="view" /></td>
-                <!-- clr() function will call clr to clear all value -->
-                <td><input type="button" value="AC" onclick="clr()" /></td>
-            </tr>
-            <tr>
-                <!-- create button and assign value to each button -->
-                <!-- dis(string) will call function dis to display value -->
-                <td><input type="button" value="1" onclick="dis('1')" /></td>
-                <td><input type="button" value="2" onclick="dis('2')" /></td>
-                <td><input type="button" value="3" onclick="dis('3')" /></td>
-                <td><input type="button" value="/" onclick="dis('/')" /></td>
-            </tr>
-            <tr>
-                <td><input type="button" value="4" onclick="dis('4')" /></td>
-                <td><input type="button" value="5" onclick="dis('5')" /></td>
-                <td><input type="button" value="6" onclick="dis('6')" /></td>
-                <td><input type="button" value="-" onclick="dis('-')" /></td>
-            </tr>
-            <tr>
-                <td><input type="button" value="7" onclick="dis('7')" /></td>
-                <td><input type="button" value="8" onclick="dis('8')" /></td>
-                <td><input type="button" value="9" onclick="dis('9')" /></td>
-                <td><input type="button" value="+" onclick="dis('+')" /></td>
-            </tr>
-            <tr>
-                <td><input type="button" value="." onclick="dis('.')" /></td>
-                <td><input type="button" value="0" onclick="dis('0')" /></td>
-                <!-- solve function call function solve to evaluate value -->
-                <td><input type="button" value="CALCULATE" onclick="execute()" /></td>
-                <td><input type="button" value="*" onclick="dis('*')" /></td>
-            </tr>
-            <tr>
-                <td><input type="button" value="(" onclick="dis('(')" /></td>
-                <td><input type="button" value=")" onclick="dis(')')" /></td>
-                <td><input type="button" value="^" onclick="dis('^')" /></td>
-                <td><input type="button" value="c" onclick="popit()" /></td>
-            </tr>
-        </table>
+        <div id="scalc">
+            <h4>Simple Calculator</h4>
+            <label>Expression</label>
+            <input type="text" id="view">
+            <button onclick="execute()">Calculate</button>
+        </div>
         <div id="areaC" class="hidden">
             <h4>Area from Circumference</h4>
             <label>Circumference</label>
